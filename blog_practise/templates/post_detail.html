@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col">
+        <div class="mt-4">
+            
+            <h1>
+                <a href="#">{{post.title}}</a>
+            </h1>
+            {% if request.user.is_authenticated %}
+            <div class="mt-2 my2">
+                
+                <a href="{% url 'post-update' post.pk %}" class="btn btn-primary"> Edit </a>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletemodal">
+                    DELETE
+                </button>
+            </div>
+            {% endif %}
+            <div class="date author">@{{ post.author.username }}</div>
+            <p>{{post.content|linebreaksbr }}</p>
+        </div>
+    </div>
+</div>
+{% endblock content %}
